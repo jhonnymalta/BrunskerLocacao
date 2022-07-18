@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "k189OdxDjErrF8nLBVOjOm8qUhu4/pOTKqvljs5UDm589xrXspj2FNaoqZE6mEKrz7HHrBlygInELdmvkYT0Ow==",
+  "dgSpecHash": "YiZlif1CpZDQa2fNBqG9l9EScVhInJ+ZwPE9f86dGwLoCOEKDRHHZKf12GcsyLk+LcfWWSEEclXcNBVXuF53Cw==",
   "success": true,
-  "projectFilePath": "C:\\Bootcamp-FullStack-UNIMED\\006-TesteDesenvolvimento\\backend\\brunsker-api\\brunsker-api.csproj",
+  "projectFilePath": "C:\\Bootcamp-FullStack-UNIMED\\007-Brunsker-Find-Imovel\\backend\\brunsker-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jhonatan.landes\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jhonatan.landes\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",

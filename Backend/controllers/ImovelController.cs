@@ -59,7 +59,7 @@ public class ImovelController : ControllerBase
         {
             await context.imoveis.AddAsync(imovel);
             await context.SaveChangesAsync();
-            return StatusCode(201, new ResultViewModel<Imovel>(imovel));
+            return StatusCode(201, imovel);
             //return Created($"v1/imoveis/{imovel.Id}", imovel);
         }
         catch (DbUpdateException ex)
@@ -100,17 +100,28 @@ public class ImovelController : ControllerBase
     }
 
     [HttpDelete("v1/imoveis/{id:int}")]
-    public async Task<IActionResult> DeleteAsync(
+    public async Task<ActionResult<Imovel>> DeleteAsync(
         [FromRoute] int id,
         [FromServices] AppDbContext context
     )
     {
-        var imovelToDelete = await context.imoveis.FirstOrDefaultAsync(x => x.Id == id);
-        if (imovelToDelete == null) return NotFound("Imovél não encontrado.");
 
-        context.imoveis.Remove(imovelToDelete);
-        context.SaveChangesAsync();
-        return Ok(imovelToDelete);
+        try
+        {
+            var imovelToDelete = await context.imoveis.FirstOrDefaultAsync(x => x.Id == id);
+            if (imovelToDelete == null) return NotFound("Imovél não encontrado.");
+
+            context.imoveis.Remove(imovelToDelete);
+            context.SaveChangesAsync();
+            return Ok("deletado");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "ERR005-Falha interna no servidor.");
+
+
+        }
+
     }
 }
 

@@ -61,9 +61,9 @@ public myform: FormGroup;
   }
   cadastrarImovel(){    
     const newImovel: IImovel={
-      cidade : this.myform.controls['cidade'].value,
-      bairro : this.myform.controls['bairro'].value,
-      cep :    this.myform.controls['code'].value,
+      cidade : this.cidade,
+      bairro : this.bairro,
+      cep :    this.code,
       quartos : this.myform.controls['quartos'].value,
       banheiros : this.myform.controls['banheiros'].value,
       garagem : this.myform.controls['garagem'].value,
@@ -71,6 +71,7 @@ public myform: FormGroup;
       corretorCode :'0'
     };
     this.dataService.postImovel(newImovel).subscribe();
+    console.log(newImovel);
     
   
   }
