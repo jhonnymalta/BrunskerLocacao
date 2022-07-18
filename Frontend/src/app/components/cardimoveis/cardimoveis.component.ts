@@ -15,7 +15,7 @@ export class CardimoveisComponent implements OnInit {
   ngOnInit(): void {}
   deletarImovel() {
     console.log('estou apertando');
-    this.dataService.deleteImovel(this.imovel.id);
+    this.dataService.deleteImovel(this.imovel.id).subscribe();
     console.log(this.imovel.id);
   }
 }

@@ -100,7 +100,7 @@ public class ImovelController : ControllerBase
     }
 
     [HttpDelete("v1/imoveis/{id:int}")]
-    public async Task<ActionResult<Imovel>> DeleteAsync(
+    public async Task<IActionResult> DeleteAsync(
         [FromRoute] int id,
         [FromServices] AppDbContext context
     )
@@ -113,7 +113,7 @@ public class ImovelController : ControllerBase
 
             context.imoveis.Remove(imovelToDelete);
             context.SaveChangesAsync();
-            return Ok("deletado");
+            return StatusCode(200, imovelToDelete);
         }
         catch (Exception ex)
         {
