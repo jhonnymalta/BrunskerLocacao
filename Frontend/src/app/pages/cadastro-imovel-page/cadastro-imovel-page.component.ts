@@ -71,7 +71,15 @@ public myform: FormGroup;
       corretorCode :'0'
     };
     this.dataService.postImovel(newImovel).subscribe();
-    console.log(newImovel);
+
+    this.cidade = '';
+      this.bairro='';  
+      this.code=''; 
+      this.quartos=''
+      this.banheiros='';  
+      this.garagem='';  
+      this.valor='';  
+    
     
   
   }

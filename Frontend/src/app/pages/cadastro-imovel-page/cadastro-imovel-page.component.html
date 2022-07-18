@@ -35,14 +35,6 @@
           placeholder="xxxxxx"
           [value]="cidade"
         />
-        <small
-          style="color: red"
-          *ngIf="
-            myform.controls['cidade'].invalid &&
-            myform.controls['cidade'].pristine
-          "
-          >*Obrigatório</small
-        >
       </div>
 
       <div class="form-group col-2">
@@ -55,14 +47,6 @@
           placeholder="xxxxxx"
           [value]="bairro"
         />
-        <small
-          style="color: red"
-          *ngIf="
-            myform.controls['bairro'].invalid;
-            $$: myform.controls['bairro'].pristine
-          "
-          >*Obrigatório</small
-        >
       </div>
       <div class="form-group col-2">
         <label for="">Cep</label>
@@ -121,14 +105,6 @@
           id=""
           placeholder="xxxxxx"
         />
-        <small
-          style="color: red"
-          *ngIf="
-            myform.controls['valor'].invalid &&
-            myform.controls['valor'].pristine
-          "
-          >*Obrigatório</small
-        >
       </div>
     </div>
 
