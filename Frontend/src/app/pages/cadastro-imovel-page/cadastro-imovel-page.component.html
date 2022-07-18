@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="row">
+    <div class="input-group mb-3 col-6">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar por cep"
+        aria-label="Buscar por cep"
+        aria-describedby="basic-addon2"
+        id="cep"
+        maxlength="8"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="acionar()"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="col-6" />
+  <form [formGroup]="myform">
+    <div class="row">
+      <div class="form-group col-2">
+        <label for="">Cidade</label>
+        <input
+          formControlName="cidade"
+          class="form-control form-control-sm"
+          type="text"
+          id=""
+          placeholder="xxxxxx"
+          [value]="cidade"
+        />
+        <small
+          style="color: red"
+          *ngIf="
+            myform.controls['cidade'].invalid &&
+            myform.controls['cidade'].pristine
+          "
+          >*Obrigatório</small
+        >
+      </div>
+
+      <div class="form-group col-2">
+        <label for="">Bairro</label>
+        <input
+          formControlName="bairro"
+          class="form-control form-control-sm"
+          type="text"
+          id="bairro"
+          placeholder="xxxxxx"
+          [value]="bairro"
+        />
+        <small
+          style="color: red"
+          *ngIf="
+            myform.controls['bairro'].invalid;
+            $$: myform.controls['bairro'].pristine
+          "
+          >*Obrigatório</small
+        >
+      </div>
+      <div class="form-group col-2">
+        <label for="">Cep</label>
+        <input
+          formControlName="code"
+          class="form-control form-control-sm"
+          type="text"
+          id=""
+          placeholder="xxxxxx"
+          [value]="code"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-2">
+        <label for="">Quartos</label>
+        <input
+          formControlName="quartos"
+          class="form-control form-control-sm"
+          type="text"
+          id=""
+          placeholder="xxxxxx"
+          [value]="quartos"
+        />
+      </div>
+      <div class="form-group col-2">
+        <label for="">Banheiros</label>
+        <input
+          formControlName="banheiros"
+          class="form-control form-control-sm"
+          type="text"
+          id=""
+          placeholder="xxxxxx"
+          [value]="banheiros"
+        />
+      </div>
+      <div class="form-group col-2">
+        <label for="">Garagem</label>
+        <input
+          formControlName="garagem"
+          class="form-control form-control-sm"
+          type="text"
+          id=""
+          placeholder="xxxxxx"
+          [value]="garagem"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-6">
+        <label for="">Valor do Imóvel</label>
+        <input
+          formControlName="valor"
+          class="form-control form-control-sm"
+          type="text"
+          id=""
+          placeholder="xxxxxx"
+        />
+        <small
+          style="color: red"
+          *ngIf="
+            myform.controls['valor'].invalid &&
+            myform.controls['valor'].pristine
+          "
+          >*Obrigatório</small
+        >
+      </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="cadastrarImovel()">
+      Cadastrar
+    </button>
+  </form>
+</div>
