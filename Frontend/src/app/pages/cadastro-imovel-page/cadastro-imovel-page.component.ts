@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map, Observable, ReplaySubject } from 'rxjs';
+import { map, observable, Observable, ReplaySubject } from 'rxjs';
 import { ICep } from 'src/app/model/ICep';
 import { IImovel } from 'src/app/model/IImovel';
 import { CepService } from 'src/app/services/cep.service';
@@ -16,7 +16,7 @@ import { __values } from 'tslib';
 export class CadastroImovelPageComponent implements OnInit {
 public mycep = '';
 public cep= new ReplaySubject<ICep>;  
-
+public imovel: any;
 public cidade = '';
 public quartos = '';
 public garagem = '';
@@ -29,7 +29,7 @@ public myform: FormGroup;
 
 
   constructor(private dataService: DataService,private cepService: CepService,private fb: FormBuilder) {
-    //this.imovel = new ReplaySubject<IImovel>();
+  
     this.myform = this.fb.group({
       cidade:['',Validators.required],
       bairro:['',Validators.compose([Validators.required,Validators.minLength(3)]) ],
@@ -63,26 +63,22 @@ public myform: FormGroup;
     
   }
   cadastrarImovel(){    
+      const imovel: IImovel= {
+          cidade : this.cidade,
+       bairro : this.bairro,
+       cep :    this.code,
+       quartos : this.myform.controls['quartos'].value,
+       banheiros : this.myform.controls['banheiros'].value,
+       garagem : this.myform.controls['garagem'].value,
+       valorImovel : this.myform.controls['valor'].value,
+       corretorCode :'0'
+      } 
 
-     imovel: Observable<any> = new {}
-    //  this.imovel = new i
+      this.dataService.postImovel(imovel).then(imovel => console.log(imovel)).catch(error => console.log(error));
+     
+
     
-    //   {
-    //   cidade = this.myform.controls['cidade'].value,
-    //   bairro : this.myform.controls['bairro'].value,
-    //   cep :    this.myform.controls['code'].value,
-    //   quartos : this.myform.controls['quartos'].value,
-    //   banheiros : this.myform.controls['banheiros'].value,
-    //   garagem : this.myform.controls['garagem'].value,
-    //   valorImovel : this.myform.controls['valor'].value,
-    //   corretorCode :'0'
-    //};
 
-    
-
-    this.dataService.postImovel( this.imovel);
-    console.log("From frontend")
-    console.log(this.imovel)
 
    
      

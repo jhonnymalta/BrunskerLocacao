@@ -14,8 +14,10 @@ export class DataService {
   getImovel(id: number) {
     return this.http.get<any>('http://localhost:5257/v1/imoveis/' + id);
   }
-  postImovel(imovel: any) {
-    return this.http.post<any>('http://localhost:5257/v1/imoveis/', imovel);
+  postImovel(imovel: IImovel) {
+    return this.http
+      .post<IImovel>('http://localhost:5257/v1/imoveis/', imovel)
+      .toPromise();
   }
   putImovel(imovel: IImovel) {
     return this.http.put<IImovel>(
@@ -24,6 +26,8 @@ export class DataService {
     );
   }
   deleteImovel(imovelID: number) {
-    return this.http.delete('http://localhost:5257/v1/imoveis/' + imovelID);
+    return this.http
+      .delete('http://localhost:5257/v1/imoveis/' + imovelID)
+      .toPromise();
   }
 }

@@ -89,6 +89,58 @@ public class ImovelController : ControllerBase
             }
         }
     }
+
+
+
+    //     [HttpDelete("v1/imoveis/{id:int}")]
+    //     public async Task<IActionResult> DeleteAsync(
+    //         [FromRoute] int id,
+    //         [FromServices] AppDbContext context
+    //     )
+    //     {
+
+    //         try
+    //         {
+    //             var imovelToDelete = await context.imoveis.FirstOrDefaultAsync(x => x.Id == id);
+    //             if (imovelToDelete == null) return NotFound("Imovél não encontrado.");
+
+    //             context.imoveis.Remove(imovelToDelete);
+    //             context.SaveChangesAsync();
+    //             return StatusCode(200, imovelToDelete);
+    //         }
+    //         catch (Exception ex)
+    //         {
+    //             return StatusCode(500, "ERR005-Falha interna no servidor.");
+
+
+    //         }
+
+    //     }
+    // }
+
+    [HttpDelete("v1/imoveis/{id:int}")]
+    public async Task<ActionResult> DeleteAsync(int id)
+    {
+
+        var queryImovelToDelete = @"SELECT * FROM imoveis WHERE ID = @id ;";
+        var queryDeleteImovel = @"DELETE FROM imoveis where id = @id;";
+        await using (var connection = new MySqlConnection(connectionString))
+        {
+
+
+            try
+            {
+                await connection.ExecuteAsync(queryImovelToDelete, new { @id = id });
+                var rows = await connection.ExecuteAsync(queryDeleteImovel, new { @id = id });
+                return StatusCode(200, @$"{rows} linha(s) afetada(s)");
+            }
+            catch
+            {
+                return StatusCode(500, "ERR005-Falha interna no servidor.");
+            }
+        }
+
+    }
 }
 
 //     
@@ -143,29 +195,7 @@ public class ImovelController : ControllerBase
 
 //     }
 
-//     [HttpDelete("v1/imoveis/{id:int}")]
-//     public async Task<IActionResult> DeleteAsync(
-//         [FromRoute] int id,
-//         [FromServices] AppDbContext context
-//     )
-//     {
-
-//         try
-//         {
-//             var imovelToDelete = await context.imoveis.FirstOrDefaultAsync(x => x.Id == id);
-//             if (imovelToDelete == null) return NotFound("Imovél não encontrado.");
-
-//             context.imoveis.Remove(imovelToDelete);
-//             context.SaveChangesAsync();
-//             return StatusCode(200, imovelToDelete);
-//         }
-//         catch (Exception ex)
-//         {
-//             return StatusCode(500, "ERR005-Falha interna no servidor.");
 
 
-//         }
 
-//     }
-// }
 

@@ -31,7 +31,9 @@ export class CardimoveisComponent implements OnInit {
     this.vaga = this.imovel.garagem;
   }
   deletarImovel() {
-    this.dataService.deleteImovel(this.imovel.id);
-    console.log('Estou no metrodo deletar imovel do cardimoveis');
+    this.dataService
+      .deleteImovel(this.imovel.id)
+      .then((imovel) => console.log(imovel))
+      .catch((error) => console.log(error));
   }
 }
