@@ -47,17 +47,19 @@ export class EditarImovelComponent implements OnInit {
   }
 
   buscarImovelById(id: number) {
-    this.dataService.getImovel(id).pipe(map(value =>{
-      this.cidade = (value.cidade)
-      this.logradouro = (value.bairro)
-      this.code = (value.cep)
-      this.banheiros = (value.banheiros)
-      this.quartos = (value.quartos)
-      this.garagem = (value.garagem)
-      this.valor = (value.valorImovel)
+    this.dataService.getImovel(id).then(imovel =>
+      {
+        this.cidade = imovel.cidade,
+        this.banheiros = imovel.banheiros,
+        this.logradouro = imovel.bairro,
+        this.code = imovel.cep,
+        this.garagem = imovel.garagem,
+        this.quartos = imovel.quartos,
+        this.valor = imovel.valorImovel
+
+
       }
-    )).subscribe();
-    this.meuId = id;
+      ).catch(error => console.log(error))
     
    
   }
@@ -80,5 +82,6 @@ export class EditarImovelComponent implements OnInit {
     this.dataService.putImovel(newImovel).subscribe()
     
   }
+  
  
 }

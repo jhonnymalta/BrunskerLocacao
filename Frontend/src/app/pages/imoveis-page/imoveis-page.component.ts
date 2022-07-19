@@ -36,4 +36,5 @@ export class ImoveisPageComponent implements OnInit {
   }
   
   
+  
 }

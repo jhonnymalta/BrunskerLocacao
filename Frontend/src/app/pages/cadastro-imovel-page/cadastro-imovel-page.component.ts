@@ -76,16 +76,11 @@ public myform: FormGroup;
 
       this.dataService.postImovel(imovel).then(imovel => console.log(imovel)).catch(error => console.log(error));
      
-
-    
-
-
-   
      
-    
-    
+
   
   }
+  
       
     
     

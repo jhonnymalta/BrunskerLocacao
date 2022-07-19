@@ -12,7 +12,9 @@ export class DataService {
     return this.http.get<any[]>('http://localhost:5257/v1/imoveis/');
   }
   getImovel(id: number) {
-    return this.http.get<any>('http://localhost:5257/v1/imoveis/' + id);
+    return this.http
+      .get<any>('http://localhost:5257/v1/imoveis/' + id)
+      .toPromise();
   }
   postImovel(imovel: IImovel) {
     return this.http
