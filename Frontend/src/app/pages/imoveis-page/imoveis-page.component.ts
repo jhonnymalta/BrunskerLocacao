@@ -11,7 +11,8 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./imoveis-page.component.css'],
 })
 export class ImoveisPageComponent implements OnInit {
-  public imoveis= new ReplaySubject<IImovel[]>;
+  //public imoveis= new ReplaySubject<IImovel[]>;
+  public imoveis: Observable<any[]> = new ReplaySubject<any[]>
   
  @Input() imovel = '';
 
@@ -25,14 +26,14 @@ export class ImoveisPageComponent implements OnInit {
   }
 
   getImoveis() {
-    this.dataService.getImoveis().pipe(
-      map(value => value)
-    ).subscribe(this.imoveis)
+    this.imoveis = this.dataService.getImoveis();
+
+    // this.dataService.getImoveis().pipe(
+    //   map(value => value)
+    // ).subscribe(this.imoveis)
     
      
   }
-  deleteImovel(id:number){
-    this.dataService.deleteImovel(id).subscribe()
-  }
+  
   
 }

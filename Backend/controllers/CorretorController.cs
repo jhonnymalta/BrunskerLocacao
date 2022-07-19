@@ -5,9 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace brunsker_api.controlers;
 
+
+
+
 [ApiController]
 public class CorretorController : ControllerBase
 {
+    const string connectionString = @"Server=localhost;Database=DB-Brunsker;User Id=root;Password=my-secret-pw;";
+
+
+
+
+
 
     [HttpPost("v1/corretores")]
     public async Task<IActionResult> PostAsync(

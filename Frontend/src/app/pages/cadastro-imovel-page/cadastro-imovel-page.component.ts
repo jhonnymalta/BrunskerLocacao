@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map, ReplaySubject } from 'rxjs';
+import { map, Observable, ReplaySubject } from 'rxjs';
 import { ICep } from 'src/app/model/ICep';
 import { IImovel } from 'src/app/model/IImovel';
 import { CepService } from 'src/app/services/cep.service';
@@ -16,7 +16,7 @@ import { __values } from 'tslib';
 export class CadastroImovelPageComponent implements OnInit {
 public mycep = '';
 public cep= new ReplaySubject<ICep>;  
-public imovel = new ReplaySubject<IImovel>;
+
 public cidade = '';
 public quartos = '';
 public garagem = '';
@@ -26,7 +26,10 @@ public code = ''
 public valor = ''
 public myform: FormGroup;
 
+
+
   constructor(private dataService: DataService,private cepService: CepService,private fb: FormBuilder) {
+    //this.imovel = new ReplaySubject<IImovel>();
     this.myform = this.fb.group({
       cidade:['',Validators.required],
       bairro:['',Validators.compose([Validators.required,Validators.minLength(3)]) ],
@@ -41,7 +44,7 @@ public myform: FormGroup;
   }
 
   ngOnInit(): void {
-   
+    
   }
   acionar(){
     let mycep = (document.getElementById("cep") as HTMLInputElement).value
@@ -60,25 +63,29 @@ public myform: FormGroup;
     
   }
   cadastrarImovel(){    
-    const newImovel: IImovel={
-      cidade : this.cidade,
-      bairro : this.bairro,
-      cep :    this.code,
-      quartos : this.myform.controls['quartos'].value,
-      banheiros : this.myform.controls['banheiros'].value,
-      garagem : this.myform.controls['garagem'].value,
-      valorImovel : this.myform.controls['valor'].value,
-      corretorCode :'0'
-    };
-    this.dataService.postImovel(newImovel).subscribe();
 
-    this.cidade = '';
-      this.bairro='';  
-      this.code=''; 
-      this.quartos=''
-      this.banheiros='';  
-      this.garagem='';  
-      this.valor='';  
+     imovel: Observable<any> = new {}
+    //  this.imovel = new i
+    
+    //   {
+    //   cidade = this.myform.controls['cidade'].value,
+    //   bairro : this.myform.controls['bairro'].value,
+    //   cep :    this.myform.controls['code'].value,
+    //   quartos : this.myform.controls['quartos'].value,
+    //   banheiros : this.myform.controls['banheiros'].value,
+    //   garagem : this.myform.controls['garagem'].value,
+    //   valorImovel : this.myform.controls['valor'].value,
+    //   corretorCode :'0'
+    //};
+
+    
+
+    this.dataService.postImovel( this.imovel);
+    console.log("From frontend")
+    console.log(this.imovel)
+
+   
+     
     
     
   

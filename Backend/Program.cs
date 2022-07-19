@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<AppDbContext>();
+//builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddCors(o => o.AddPolicy("AllowAnyOrigins", builder =>
             {
                 builder.AllowAnyOrigin()

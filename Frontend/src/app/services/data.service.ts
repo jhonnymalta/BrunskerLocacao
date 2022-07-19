@@ -9,13 +9,13 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getImoveis() {
-    return this.http.get<IImovel[]>('http://localhost:5257/v1/imoveis/');
+    return this.http.get<any[]>('http://localhost:5257/v1/imoveis/');
   }
   getImovel(id: number) {
     return this.http.get<any>('http://localhost:5257/v1/imoveis/' + id);
   }
-  postImovel(imovel: IImovel) {
-    return this.http.post<IImovel>('http://localhost:5257/v1/imoveis/', imovel);
+  postImovel(imovel: any) {
+    return this.http.post<any>('http://localhost:5257/v1/imoveis/', imovel);
   }
   putImovel(imovel: IImovel) {
     return this.http.put<IImovel>(

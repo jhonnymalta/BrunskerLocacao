@@ -6,14 +6,14 @@ public class Imovel
 {
 
     public int Id { get; set; }
-    public string Cidade { get; set; }
-    public string Bairro { get; set; }
-    public string Quartos { get; set; }
-    public string Banheiros { get; set; }
+    public string? Cidade { get; set; }
+    public string? Bairro { get; set; }
+    public string? Quartos { get; set; }
+    public string? Banheiros { get; set; }
 
-    public string Garagem { get; set; }
+    public string? Garagem { get; set; }
     [Required(ErrorMessage = "Valor do imóvel é obrigatório.")]
-    public string ValorImovel { get; set; }
+    public string? ValorImovel { get; set; }
 
     [Required(ErrorMessage = "Cep do imóvel é obrigatório.")]
     public string Cep { get; set; }
